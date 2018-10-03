@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>sample_app</title>
+    <meta name="description" content="sample_app description">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="/manifest.json">
+
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module" src="/src/main-app/main-app.js" crossorigin></script>
+
+    <script>
+      /*
+        window['_fs_ready'] = function() {
+         var sessionUrl = FS.getCurrentSessionURL();
+         // set sessionUrl attribute on main-app element
+         // document.querySelector("main-app").sessionUrl = sessionUrl
+         // OR fire a custom event and then have main-app listen for this event
+         // and set a sessionUrl attribute on feedback-form?
+        };
+      */
+    </script>
+  </head>
+  <body>
+    <main-app></main-app>
+  </body>
+</html>
