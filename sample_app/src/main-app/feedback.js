@@ -15,7 +15,7 @@ class Feedback extends PolymerElement {
     this.toggleForm();
   }
 
-  async handleSaveClick() {
+  async handleSendClick() {
     //TODO: make API call
     //const response = await fetch('http://www.google.com');
     console.log(this.$.feedback.value);
@@ -61,7 +61,7 @@ class Feedback extends PolymerElement {
       <div id="container">
         <div id="handle" on-click="handleFeedbackClick">feedback</div>
         <textarea rows="10" cols="50" id="feedback"></textarea>
-        <button id="save" on-click="handleSaveClick">save</button>
+        <button id="send" on-click="handleSendClick">send</button>
       </div>
     `;
   }
