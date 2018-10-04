@@ -1,0 +1,57 @@
+
+service: fullstory-sample-api
+custom:
+  feedbackTableName: Feedback-${self:provider.stage}
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'v1'}
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:Query
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+        - dynamodb:BatchGetItem
+        - dynamodb:BatchWriteItem
+      Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.feedbackTableName}
+  environment:
+    FEEDBACK_TABLE_NAME: ${self:custom.feedbackTableName}
+functions:
+  ping:
+    handler: handler.ping
+    events:
+      - http:
+          path: ping
+          method: get
+  saveFeedback:
+    handler: handler.save
+    events:
+      - http:
+          path: feedback
+          method: post
+          cors: true
+
+resources:
+  Resources:
+    FeedbackTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: sessionId
+            AttributeType: S
+          - AttributeName: date
+            AttributeType: S
+        ProvisionedThroughput:
+          WriteCapacityUnits: 5
+          ReadCapacityUnits: 5
+        TableName: ${self:custom.feedbackTableName}
+        KeySchema:
+        - KeyType: HASH
+          AttributeName: sessionId
+        - KeyType: RANGE
+          AttributeName: date
