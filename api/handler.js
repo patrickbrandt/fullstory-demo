@@ -64,6 +64,7 @@ module.exports.save = async (event, context) => {
       json: {
         title: 'made from the app',
         body: 'include feedback text and seesion URL',
+        labels: ['negative-feedback'],
       }
     });
   } catch(e) {
