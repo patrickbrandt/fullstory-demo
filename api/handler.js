@@ -2,6 +2,8 @@
 const Aws = require('aws-sdk');
 const ddb = new Aws.DynamoDB.DocumentClient();
 const prehend = new Aws.Comprehend();
+const axios = require('axios');
+const jwt = require('jsonwebtoken');
 
 module.exports.ping = async (event, context) => {
   return response.create(200, {
@@ -35,7 +37,9 @@ module.exports.save = async (event, context) => {
     return response.create(500, e);
   }
 
-  return response.create(200, { sentimentInference } );
+  const token = makeJWT();
+
+  return response.create(200, { token } );
 };
 
 const sentiment = async (text) => {
@@ -48,6 +52,16 @@ const sentiment = async (text) => {
     inference.Sentiment = 'RAGE';
   }
   return inference;
+};
+
+const makeJWT = () => {
+  const issued = Math.floor(Date.now() / 1000);
+  const payload = {
+    iat: issued,
+    exp: issued + (10 * 60),
+    iss: process.env.GITHUB_APP_ID,
+  };
+  return jwt.sign(payload, process.env.SIGNING_KEY);
 };
 
 const response = {
