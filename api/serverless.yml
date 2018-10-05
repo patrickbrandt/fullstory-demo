@@ -25,8 +25,8 @@ provider:
       Resource: "*"
   environment:
     FEEDBACK_TABLE_NAME: ${self:custom.feedbackTableName}
-    SIGNING_KEY: ${file(secrets.json):SIGNING_KEY}
-    GITHUB_APP_ID: ${file(secrets.json):GITHUB_APP_ID}
+    SIGNING_KEY: ${file(secrets.yml):SIGNING_KEY}
+    GITHUB_APP_ID: ${file(secrets.yml):GITHUB_APP_ID}
 functions:
   ping:
     handler: handler.ping

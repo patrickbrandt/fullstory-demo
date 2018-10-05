@@ -2,8 +2,19 @@
 const Aws = require('aws-sdk');
 const ddb = new Aws.DynamoDB.DocumentClient();
 const prehend = new Aws.Comprehend();
-const axios = require('axios');
+const util = require('util');
+const request = require('request-promise-native');
 const jwt = require('jsonwebtoken');
+
+//axios.defaults.baseURL = 'https://api.github.com';
+//axios.defaults.headers.common['Accept'] = 'application/vnd.github.machine-man-preview+json';
+const baseRequest = request.defaults({
+  baseUrl: 'https://api.github.com',
+  headers: {
+    Accept: 'application/vnd.github.machine-man-preview+json',
+    'User-Agent': 'fullstory-test',
+    },
+});
 
 module.exports.ping = async (event, context) => {
   return response.create(200, {
@@ -37,9 +48,43 @@ module.exports.save = async (event, context) => {
     return response.create(500, e);
   }
 
-  const token = makeJWT();
 
-  return response.create(200, { token } );
+  let ghResponse;
+  try {
+    ghResponse = await authRequest().post('/app/installations/365557/access_tokens');
+    console.log(`/app/installations/365557/access_tokens response: ${ghResponse}`);
+    const iRequest = baseRequest.defaults({
+      headers: { Authorization: `Bearer ${JSON.parse(ghResponse).token}` },
+    });
+
+    // read this: https://developer.github.com/v3/apps/available-endpoints/
+    ghResponse = await iRequest.post({
+      url: '/repos/patrickbrandt/fullstory-demo/issues',
+      json: {
+        title: 'made from the app',
+        body: 'include feedback text and seesion URL',
+      }
+    });
+  } catch(e) {
+    ghResponse = e;
+    console.log(`there was an error: ${e}`);
+  }
+  return response.create(200, { ghResponse } );
+};
+
+const authRequest = () => {
+  console.log('making JWT');
+  const token = makeJWT();
+  console.log(`JWT made: ${token}`);
+
+  // https://developer.github.com/v3/apps/#find-installations
+  //access_token = await installationRequest.post('/app/installations/365557/access_tokens');
+  //console.log(`access_token: ${access_token}`);
+
+
+  return baseRequest.defaults({
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 const sentiment = async (text) => {
@@ -61,7 +106,13 @@ const makeJWT = () => {
     exp: issued + (10 * 60),
     iss: process.env.GITHUB_APP_ID,
   };
-  return jwt.sign(payload, process.env.SIGNING_KEY);
+  console.log(`signing JWT`);
+  try {
+    return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256'});
+  } catch(e) {
+    console.log(`error creating token: ${e}`);
+    throw e;
+  }
 };
 
 const response = {
