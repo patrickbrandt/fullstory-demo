@@ -19,6 +19,10 @@ provider:
         - dynamodb:BatchGetItem
         - dynamodb:BatchWriteItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.feedbackTableName}
+    - Effect: Allow
+      Action:
+        - comprehend:DetectSentiment
+      Resource: "*"
   environment:
     FEEDBACK_TABLE_NAME: ${self:custom.feedbackTableName}
 functions:

@@ -1,7 +1,7 @@
 
 const Aws = require('aws-sdk');
 const ddb = new Aws.DynamoDB.DocumentClient();
-//const ai = new AWS.Comprehend();
+const prehend = new Aws.Comprehend();
 
 module.exports.ping = async (event, context) => {
   return response.create(200, {
@@ -16,6 +16,7 @@ module.exports.ping = async (event, context) => {
 module.exports.save = async (event, context) => {
   const body = JSON.parse(event.body);
   //TODO: validate request body
+  const sentimentInference = await sentiment(body.feedback);
   const params = {
     TableName: process.env.FEEDBACK_TABLE_NAME,
     Item: {
@@ -34,7 +35,19 @@ module.exports.save = async (event, context) => {
     return response.create(500, e);
   }
 
-  return response.create(200, { message: 'TODO'} );
+  return response.create(200, { sentimentInference } );
+};
+
+const sentiment = async (text) => {
+  const params = {
+    LanguageCode: 'en',
+    Text: text,
+  };
+  const inference = await prehend.detectSentiment(params).promise();
+  if (inference.SentimentScore.Negative > .95) {
+    inference.Sentiment = 'RAGE';
+  }
+  return inference;
 };
 
 const response = {
