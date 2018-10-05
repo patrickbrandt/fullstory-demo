@@ -23,7 +23,7 @@ module.exports.save = async (event, context) => {
       sessionId: body.sessionId,
       date: new Date().toISOString(),
       feedback: body.feedback,
-      sentiment: 'PLACEHOLDER',
+      sentiment: sentimentInference.Sentiment,
     },
   };
 
