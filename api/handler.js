@@ -52,8 +52,8 @@ module.exports.save = async (event, context) => {
   let ghResponse;
   try {
     // https://developer.github.com/v3/apps/#find-installations
-    ghResponse = await authRequest().post('/app/installations/365557/access_tokens');
-    console.log(`/app/installations/365557/access_tokens response: ${ghResponse}`);
+    ghResponse = await authRequest().post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
+    console.log(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens response: ${ghResponse}`);
     const iRequest = baseRequest.defaults({
       headers: { Authorization: `Bearer ${JSON.parse(ghResponse).token}` },
     });
