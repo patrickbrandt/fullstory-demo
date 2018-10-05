@@ -12,9 +12,6 @@ module.exports.ping = async (event, context) => {
     });
 };
 
-// TODO: get sentiment from AWS Comprehend + create GitHub issue for negative sentiment
-// with feedback text and FullStory session replay URL
-// docs: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Comprehend.html#detectSentiment-property
 module.exports.save = async (event, context) => {
   const body = JSON.parse(event.body);
   //TODO: validate request body
@@ -42,16 +39,22 @@ module.exports.save = async (event, context) => {
   return response.create(200, { ghResponse } );
 };
 
-const sentiment = async (text) => {
-  const params = {
-    LanguageCode: 'en',
-    Text: text,
-  };
-  const inference = await prehend.detectSentiment(params).promise();
-  if (inference.SentimentScore.Negative > .95) {
-    inference.Sentiment = 'RAGE';
-  }
-  return inference;
+const sentiment = (text) => {
+  return new Promise(async (resolve, reject) => {
+      const params = {
+      LanguageCode: 'en',
+      Text: text,
+    };
+    try {
+      const inference = await prehend.detectSentiment(params).promise();
+      if (inference.SentimentScore.Negative > .95) {
+        inference.Sentiment = 'RAGE';
+      }
+      resolve(inference);
+    } catch (e) {
+      reject(e);
+    }
+  });
 };
 
 

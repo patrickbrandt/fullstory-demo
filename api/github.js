@@ -25,13 +25,17 @@ const makeJWT = () => {
   }
 };
 
-const authRequest = () => {
-  console.log('making JWT');
-  const token = makeJWT();
-  console.log(`JWT made: ${token}`);
-
+const authRequest = (token) => {
   return baseRequest.defaults({
     headers: { Authorization: `Bearer ${token}` },
+  });
+};
+
+const getAccessToken = () => {
+  // https://developer.github.com/v3/apps/#find-installations
+  return new Promise(async (resolve, reject) => {
+    const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
+    resolve(JSON.parse(ghResponse));
   });
 };
 
@@ -41,14 +45,11 @@ const createIssue = (title, text) => {
     try {
       console.log('getting access token for the installation from GitHub');
       // https://developer.github.com/v3/apps/#find-installations
-      ghResponse = await authRequest().post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
-      console.log(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens response: ${ghResponse}`);
-      const iRequest = baseRequest.defaults({
-        headers: { Authorization: `Bearer ${JSON.parse(ghResponse).token}` },
-      });
+      ghResponse = await getAccessToken();
+      console.log(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens response: ${JSON.stringify(ghResponse)}`);
 
       // read this: https://developer.github.com/v3/apps/available-endpoints/
-      ghResponse = await iRequest.post({
+      ghResponse = await authRequest(ghResponse.token).post({
         url: '/repos/patrickbrandt/fullstory-demo/issues',
         json: {
           title,
