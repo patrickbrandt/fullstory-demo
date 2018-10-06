@@ -33,6 +33,16 @@ module.exports.save = async (event, context) => {
   return response.create(200, ghResponse || { message: '😊 only happy thoughts 😊' } );
 };
 
+module.exports.get = async (event, context) => {
+  // TODO: get filters out of query string
+  try {
+    const feedback = await db.feedback.get();
+    return response.create(200, feedback);
+  } catch(e) {
+    return response.genericError();
+  }
+};
+
 const makeTitle = (feedback) => {
   const maxLength = 6;
   const splitFeedback = feedback.split(' ');

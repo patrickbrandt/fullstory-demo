@@ -42,6 +42,13 @@ functions:
           path: feedback
           method: post
           cors: true
+  getFeedback:
+    handler: handler.get
+    events:
+      - http:
+          path: feedback
+          method: get
+          cors: true
 
 resources:
   Resources:
@@ -53,6 +60,8 @@ resources:
             AttributeType: S
           - AttributeName: date
             AttributeType: S
+          - AttributeName: sentiment
+            AttributeType: S
         ProvisionedThroughput:
           WriteCapacityUnits: 5
           ReadCapacityUnits: 5
@@ -62,3 +71,13 @@ resources:
           AttributeName: sessionId
         - KeyType: RANGE
           AttributeName: date
+        GlobalSecondaryIndexes:
+        - IndexName: sentiment-index
+          Projection:
+            ProjectionType: ALL
+          ProvisionedThroughput:
+            WriteCapacityUnits: 5
+            ReadCapacityUnits: 5
+          KeySchema:
+          - KeyType: HASH
+            AttributeName: sentiment
