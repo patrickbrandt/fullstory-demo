@@ -12,8 +12,8 @@ class FeedbackTable extends Component {
               <th>Date</th>
               <th>Replay Link</th>
             </tr>
-            {this.props.Feedback.map(f =>
-              <tr>
+            {this.props.Feedback.map((f, i) =>
+              <tr key={i}>
                 <td>{f.feedback}</td>
                 <td>{f.sentiment}</td>
                 <td>{new Date(f.date).toDateString()}, {new Date(f.date).toLocaleTimeString()}</td>
