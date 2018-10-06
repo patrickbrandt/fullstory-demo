@@ -48,21 +48,21 @@ const addSessionURL = (sessionURL, feedback) => {
 };
 
 const sentiment = async (text) => {
-    const params = {
-      LanguageCode: 'en',
-      Text: text,
-    };
+  const params = {
+    LanguageCode: 'en',
+    Text: text,
+  };
 
-    try {
-      const inference = await prehend.detectSentiment(params).promise();
-      if (inference.SentimentScore.Negative > .95) {
-        inference.Sentiment = 'RAGE';
-      }
-      return inference;
-    } catch (e) {
-      console.log(`error with sentiment inference: ${e}`);
-      throw e;
+  try {
+    const inference = await prehend.detectSentiment(params).promise();
+    if (inference.SentimentScore.Negative > .95) {
+      inference.Sentiment = 'RAGE';
     }
+    return inference;
+  } catch (e) {
+    console.log(`error with sentiment inference: ${e}`);
+    throw e;
+  }
 };
 
 const response = {
