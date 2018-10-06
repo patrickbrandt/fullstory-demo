@@ -33,6 +33,7 @@ const sentiment = async (text) => {
       LanguageCode: 'en',
       Text: text,
     };
+
     try {
       const inference = await prehend.detectSentiment(params).promise();
       if (inference.SentimentScore.Negative > .95) {

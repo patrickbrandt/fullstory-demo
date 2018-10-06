@@ -33,9 +33,11 @@ const authRequest = (token) => {
 
 const getAccessToken = async () => {
   // https://developer.github.com/v3/apps/#find-installations
+  // TODO: cache access_token and only make /access_tokens service request on a cache miss
   const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
   return JSON.parse(ghResponse);
 };
+
 
 const createIssue = async (title, text) => {
   let ghResponse;
@@ -46,7 +48,7 @@ const createIssue = async (title, text) => {
 
     // read this: https://developer.github.com/v3/apps/available-endpoints/
     ghResponse = await authRequest(ghResponse.token).post({
-      url: '/repos/patrickbrandt/fullstory-demo/issues',
+      url: '/repos/patrickbrandt/fullstory-demo/issues', // TODO: parameterize --> /repos/:owner/:repo/issues
       json: {
         title,
         body: text,
