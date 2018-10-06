@@ -63,6 +63,8 @@ const createIssue = async (title, text) => {
 };
 
 module.exports = {
-  createIssue,
+  issue: {
+    create: createIssue,
+  },
 };
 

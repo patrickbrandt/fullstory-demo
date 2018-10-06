@@ -24,7 +24,7 @@ module.exports.save = async (event, context) => {
     return response.create(500, e);
   }
 
-  const ghResponse = await github.createIssue('testing from app', 'this is another test from the app');
+  const ghResponse = await github.issue.create('testing from app', 'this is another test from the app');
   return response.create(200, { ghResponse } );
 };
 
