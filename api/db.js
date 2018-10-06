@@ -26,27 +26,27 @@ const db = {
       }
     },
     get: async (sentimentFilter = ['POSITIVE', 'NEGATIVE', 'NEUTRAL', 'MIXED', 'RAGE']) => {
-      const KeyConditionExpression =  sentimentFilter.reduce((acc, value, index) => {
-        return acc + `#sentiment = :filter${index + 1}` + (index < sentimentFilter.length - 1 ? ' or ' : '')
-      }, '');
+      // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html
+      // 'in' can only be used for a filter expression: https://stackoverflow.com/questions/32671509/in-statement-in-dynamodb
+      //const KeyConditionExpression = `#sentiment in (${sentimentFilter.join(',')})`;
 
       const ExpressionAttributeValues = sentimentFilter.reduce((acc, value, index) => {
         acc[`:filter${index + 1}`] = value;
         return acc;
       }, {});
-
+      const FilterExpression = `#sentiment in (${Object.keys(ExpressionAttributeValues).join(',')})`;
       const ExpressionAttributeNames = { '#sentiment' : 'sentiment' };
-
       const params = {
         TableName: process.env.FEEDBACK_TABLE_NAME,
-        IndexName: 'sentiment-index',
-        KeyConditionExpression,
         ExpressionAttributeValues,
         ExpressionAttributeNames,
+        FilterExpression,
       };
 
+      console.log(`getting feedback with params ${JSON.stringify(params)}`);
+
       try {
-        const data = await ddb.query(params).promise();
+        const data = await ddb.scan(params).promise();
         console.log(`retrieved feedback from ddb ${JSON.stringify(data)}`);
         return data.Items;
       } catch(e) {

@@ -34,9 +34,16 @@ module.exports.save = async (event, context) => {
 };
 
 module.exports.get = async (event, context) => {
-  // TODO: get filters out of query string
+  const qstring = event.queryStringParameters;
+  let filter;
+  if(qstring) {
+    filter = qstring.filter;
+  }
+
+  //TODO: validate that filter has expected values
+
   try {
-    const feedback = await db.feedback.get();
+    const feedback = filter ? await db.feedback.get(filter.split(',')) : await db.feedback.get();
     return response.create(200, feedback);
   } catch(e) {
     console.log(`error: ${e}`);
