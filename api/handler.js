@@ -56,7 +56,6 @@ const sentiment = async (text) => {
     }
 };
 
-
 const response = {
   create: (statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) => {
     return {
