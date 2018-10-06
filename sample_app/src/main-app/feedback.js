@@ -28,7 +28,7 @@ export class Feedback extends PolymerElement {
   handleFeedbackClick() {
     this.toggleForm();
   }
-// https://app.fullstory.com/ui/F7F6T/session/5643172898144256%3A5629499534213120%3A1538795548425
+
   async handleSendClick() {
     this.toggleForm();
     const feedback = this.$.feedback.value;
