@@ -18,7 +18,7 @@ const makeJWT = () => {
   };
   console.log(`creating JWT`);
   try {
-    return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256'});
+    return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256' });
   } catch(e) {
     console.log(`error creating JWT: ${e}`);
     throw e;
@@ -53,7 +53,7 @@ const createIssue = async (title, text) => {
         title,
         body: text,
         labels: ['negative-feedback'],
-      }
+      },
     });
   } catch(e) {
     console.log(`there was an error creating an issue: ${e}`);
