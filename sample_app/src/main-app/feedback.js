@@ -1,7 +1,7 @@
 
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
-class Feedback extends PolymerElement {
+export class Feedback extends PolymerElement {
   constructor() {
     super();
     this.feedbackAPI = 'https://mh9x17nwee.execute-api.us-east-1.amazonaws.com/v1/feedback';
@@ -21,15 +21,17 @@ class Feedback extends PolymerElement {
   }
 
   async handleSendClick() {
-    console.log(this.$.feedback.value);
     this.toggleForm();
     const feedback = this.$.feedback.value;
+    if (feedback === '') {
+      return;
+    }
     const response = await fetch(this.feedbackAPI, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
       headers: {
-          "Content-Type": "application/json; charset=utf-8",
+          'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         sessionId: 'TEST',
@@ -44,6 +46,7 @@ class Feedback extends PolymerElement {
     if (this.visible) {
       this.style.right = '-340px';
     } else {
+      this.$.feedback.focus();
       this.style.right = '0';
     }
     this.visible = !this.visible;
