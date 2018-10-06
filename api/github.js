@@ -38,7 +38,6 @@ const getAccessToken = async () => {
   return JSON.parse(ghResponse);
 };
 
-
 const createIssue = async (title, text) => {
   let ghResponse;
   try {
