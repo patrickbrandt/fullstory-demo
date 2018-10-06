@@ -2,6 +2,11 @@
 import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
 class Feedback extends PolymerElement {
+  constructor() {
+    super();
+    this.feedbackAPI = 'https://mh9x17nwee.execute-api.us-east-1.amazonaws.com/v1/feedback';
+  }
+
   static get properties () {
     return {
       visible: {
@@ -16,11 +21,23 @@ class Feedback extends PolymerElement {
   }
 
   async handleSendClick() {
-    //TODO: make API call
-    //const response = await fetch('http://www.google.com');
     console.log(this.$.feedback.value);
-    this.$.feedback.value = '';
     this.toggleForm();
+    const feedback = this.$.feedback.value;
+    const response = await fetch(this.feedbackAPI, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      headers: {
+          "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        sessionId: 'TEST',
+        feedback,
+      }),
+    });
+    console.log(JSON.stringify(await response.json()));
+    this.$.feedback.value = '';
   }
 
   toggleForm() {
