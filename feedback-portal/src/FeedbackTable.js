@@ -17,7 +17,7 @@ class FeedbackTable extends Component {
                 <td>{f.feedback}</td>
                 <td>{f.sentiment}</td>
                 <td>{new Date(f.date).toDateString()}, {new Date(f.date).toLocaleTimeString()}</td>
-                <td><a href="{f.sessionURL}">View Session</a></td>
+                <td><a href={f.sessionURL}>View Session</a></td>
               </tr>
             )}
           </tbody>
