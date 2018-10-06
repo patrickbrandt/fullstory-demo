@@ -17,15 +17,21 @@ module.exports.save = async (event, context) => {
   const sentimentInference = await sentiment(body.feedback);
 
   try {
-    console.log(db);
     await db.feedback.save(body.sessionId, body.feedback, sentimentInference.Sentiment);
   } catch (e) {
     console.log(`error: ${JSON.stringify(e)}`);
-    return response.create(500, e);
+    return response.genericError();
   }
 
-  const ghResponse = await github.issue.create('testing from app', 'this is another test from the app');
-  return response.create(200, { ghResponse } );
+  let ghResponse;
+  if (sentimentInference.Sentiment === 'NEGATIVE' || sentimentInference.Sentiment === 'RAGE') {
+    ghResponse = await github.issue.create(makeTitle(body.feedback), body.feedback);
+  }
+  return response.create(200, ghResponse || { message: '😊 only happy thoughts 😊' } );
+};
+
+const makeTitle = (feedback) => {
+  return feedback.split(' ').splice(0,6).join(' ') + '...';
 };
 
 const sentiment = async (text) => {
