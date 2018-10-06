@@ -3,7 +3,7 @@ const ddb = new Aws.DynamoDB.DocumentClient();
 
 const db = {
   feedback: {
-    save: async (sessionId, sessionURL, feedback, sentiment) => {
+    save: async (sessionId, sessionURL, feedback, sentiment, githubURL) => {
       // TODO: validate input
       const params = {
         TableName: process.env.FEEDBACK_TABLE_NAME,
@@ -12,6 +12,7 @@ const db = {
           sessionURL,
           feedback,
           sentiment,
+          githubURL,
           date: new Date().toISOString(),
         },
       };

@@ -15,21 +15,24 @@ module.exports.save = async (event, context) => {
   const body = JSON.parse(event.body);
   const sentimentInference = await sentiment(body.feedback);
 
+  let ghResponse;
+  if (sentimentInference.Sentiment === 'NEGATIVE' || sentimentInference.Sentiment === 'RAGE') {
+    ghResponse = await github.issue.create(makeTitle(body.feedback), addSessionURL(body.sessionURL, body.feedback));
+  }
+
+  // NOTE: if a session user is deleted in FullStory, their browser sessionId and sessionURL will be null
   try {
     await db.feedback.save(
       body.sessionId,
       body.sessionURL,
       body.feedback,
-      sentimentInference.Sentiment);
+      sentimentInference.Sentiment,
+      ghResponse ? ghResponse.html_url : undefined);
   } catch (e) {
     console.log(`error: ${JSON.stringify(e)}`);
     return response.genericError();
   }
 
-  let ghResponse;
-  if (sentimentInference.Sentiment === 'NEGATIVE' || sentimentInference.Sentiment === 'RAGE') {
-    ghResponse = await github.issue.create(makeTitle(body.feedback), addSessionURL(body.sessionURL, body.feedback));
-  }
   return response.create(200, ghResponse || { message: '😊 only happy thoughts 😊' } );
 };
 
