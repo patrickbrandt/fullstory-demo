@@ -12,20 +12,31 @@ export class Feedback extends PolymerElement {
       visible: {
         type: Boolean,
         value: false,
+      },
+      FS: {
+        type: Object,
+        observer: '_fsChanged',
+
       }
     };
+  }
+
+  _fsChanged() {
+    console.log('FS was set in feedback form');
   }
 
   handleFeedbackClick() {
     this.toggleForm();
   }
-
+// https://app.fullstory.com/ui/F7F6T/session/5643172898144256%3A5629499534213120%3A1538795548425
   async handleSendClick() {
     this.toggleForm();
     const feedback = this.$.feedback.value;
     if (feedback === '') {
       return;
     }
+    const sessionId = this.FS.getCurrentSession();
+    const sessionURL = this.FS.getCurrentSessionURL(true);
     const response = await fetch(this.feedbackAPI, {
       method: 'POST',
       mode: 'cors',
@@ -34,8 +45,9 @@ export class Feedback extends PolymerElement {
           'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
-        sessionId: 'TEST',
+        sessionId,
         feedback,
+        sessionURL,
       }),
     });
     console.log(JSON.stringify(await response.json()));

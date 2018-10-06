@@ -16,7 +16,11 @@ module.exports.save = async (event, context) => {
   const sentimentInference = await sentiment(body.feedback);
 
   try {
-    await db.feedback.save(body.sessionId, body.feedback, sentimentInference.Sentiment);
+    await db.feedback.save(
+      body.sessionId,
+      body.sessionURL,
+      body.feedback,
+      sentimentInference.Sentiment);
   } catch (e) {
     console.log(`error: ${JSON.stringify(e)}`);
     return response.genericError();
@@ -24,7 +28,7 @@ module.exports.save = async (event, context) => {
 
   let ghResponse;
   if (sentimentInference.Sentiment === 'NEGATIVE' || sentimentInference.Sentiment === 'RAGE') {
-    ghResponse = await github.issue.create(makeTitle(body.feedback), body.feedback);
+    ghResponse = await github.issue.create(makeTitle(body.feedback), addSessionURL(body.sessionURL, body.feedback));
   }
   return response.create(200, ghResponse || { message: '😊 only happy thoughts 😊' } );
 };
@@ -36,6 +40,11 @@ const makeTitle = (feedback) => {
     return feedback.split(' ').splice(0, maxLength).join(' ') + '...';
   }
   return feedback;
+};
+
+const addSessionURL = (sessionURL, feedback) => {
+  const callToAction = `\n\nView FullStory session replay:\n${sessionURL}`;
+  return feedback + callToAction;
 };
 
 const sentiment = async (text) => {
