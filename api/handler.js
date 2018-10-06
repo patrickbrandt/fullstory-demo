@@ -31,7 +31,12 @@ module.exports.save = async (event, context) => {
 };
 
 const makeTitle = (feedback) => {
-  return feedback.split(' ').splice(0,6).join(' ') + '...';
+  const maxLength = 6;
+  const splitFeedback = feedback.split(' ');
+  if (splitFeedback.length > maxLength) {
+    return feedback.split(' ').splice(0, maxLength).join(' ') + '...';
+  }
+  return feedback;
 };
 
 const sentiment = async (text) => {
