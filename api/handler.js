@@ -34,14 +34,12 @@ module.exports.save = async (event, context) => {
     return response.create(500, e);
   }
 
-
   const ghResponse = await github.createIssue('testing from app', 'this is another test from the app');
   return response.create(200, { ghResponse } );
 };
 
-const sentiment = (text) => {
-  return new Promise(async (resolve, reject) => {
-      const params = {
+const sentiment = async (text) => {
+    const params = {
       LanguageCode: 'en',
       Text: text,
     };
@@ -50,11 +48,11 @@ const sentiment = (text) => {
       if (inference.SentimentScore.Negative > .95) {
         inference.Sentiment = 'RAGE';
       }
-      resolve(inference);
+      return inference;
     } catch (e) {
-      reject(e);
+      console.log(`error with sentiment inference: ${e}`);
+      throw e;
     }
-  });
 };
 
 

@@ -5,7 +5,7 @@ const baseRequest = request.defaults({
   baseUrl: 'https://api.github.com',
   headers: {
     Accept: 'application/vnd.github.machine-man-preview+json',
-    'User-Agent': 'fullstory-test',
+    'User-Agent': 'fullstory-feedback',
     },
 });
 
@@ -16,7 +16,7 @@ const makeJWT = () => {
     exp: issued + (10 * 60),
     iss: process.env.GITHUB_APP_ID,
   };
-  console.log(`signing JWT`);
+  console.log(`creating JWT`);
   try {
     return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256'});
   } catch(e) {
@@ -31,40 +31,33 @@ const authRequest = (token) => {
   });
 };
 
-const getAccessToken = () => {
+const getAccessToken = async () => {
   // https://developer.github.com/v3/apps/#find-installations
-  return new Promise(async (resolve, reject) => {
-    const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
-    resolve(JSON.parse(ghResponse));
-  });
+  const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
+  return JSON.parse(ghResponse);
 };
 
-const createIssue = (title, text) => {
-  return new Promise(async (resolve, reject) => {
-    let ghResponse;
-    try {
-      console.log('getting access token for the installation from GitHub');
-      // https://developer.github.com/v3/apps/#find-installations
-      ghResponse = await getAccessToken();
-      console.log(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens response: ${JSON.stringify(ghResponse)}`);
+const createIssue = async (title, text) => {
+  let ghResponse;
+  try {
+    console.log('getting access token for the installation from GitHub');
+    // https://developer.github.com/v3/apps/#find-installations
+    ghResponse = await getAccessToken();
 
-      // read this: https://developer.github.com/v3/apps/available-endpoints/
-      ghResponse = await authRequest(ghResponse.token).post({
-        url: '/repos/patrickbrandt/fullstory-demo/issues',
-        json: {
-          title,
-          body: text,
-          labels: ['negative-feedback'],
-        }
-      });
-    } catch(e) {
-      console.log(`there was an error: ${e}`);
-      reject(e) ;
-    }
-
-    resolve(ghResponse);
-  });
-
+    // read this: https://developer.github.com/v3/apps/available-endpoints/
+    ghResponse = await authRequest(ghResponse.token).post({
+      url: '/repos/patrickbrandt/fullstory-demo/issues',
+      json: {
+        title,
+        body: text,
+        labels: ['negative-feedback'],
+      }
+    });
+  } catch(e) {
+    console.log(`there was an error creating an issue: ${e}`);
+    throw e;
+  }
+  return ghResponse;
 };
 
 module.exports = {
