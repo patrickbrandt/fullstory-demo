@@ -1,8 +1,7 @@
-
 const Aws = require('aws-sdk');
-const ddb = new Aws.DynamoDB.DocumentClient();
 const prehend = new Aws.Comprehend();
 const github = require('./github');
+const db = require('./db');
 
 
 module.exports.ping = async (event, context) => {
@@ -13,22 +12,13 @@ module.exports.ping = async (event, context) => {
 };
 
 module.exports.save = async (event, context) => {
+  // TODO: validate input
   const body = JSON.parse(event.body);
-  //TODO: validate request body
   const sentimentInference = await sentiment(body.feedback);
-  const params = {
-    TableName: process.env.FEEDBACK_TABLE_NAME,
-    Item: {
-      sessionId: body.sessionId,
-      date: new Date().toISOString(),
-      feedback: body.feedback,
-      sentiment: sentimentInference.Sentiment,
-    },
-  };
 
   try {
-    const putResult = await ddb.put(params).promise();
-    console.log(`feedback saved: ${putResult}`);
+    console.log(db);
+    await db.feedback.save(body.sessionId, body.feedback, sentimentInference.Sentiment);
   } catch (e) {
     console.log(`error: ${JSON.stringify(e)}`);
     return response.create(500, e);

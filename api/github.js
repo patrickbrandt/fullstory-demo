@@ -20,7 +20,7 @@ const makeJWT = () => {
   try {
     return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256'});
   } catch(e) {
-    console.log(`error creating token: ${e}`);
+    console.log(`error creating JWT: ${e}`);
     throw e;
   }
 };
