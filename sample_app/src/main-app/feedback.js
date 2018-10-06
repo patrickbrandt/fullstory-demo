@@ -16,7 +16,6 @@ export class Feedback extends PolymerElement {
       FS: {
         type: Object,
         observer: '_fsChanged',
-
       }
     };
   }
