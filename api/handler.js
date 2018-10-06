@@ -39,6 +39,7 @@ module.exports.get = async (event, context) => {
     const feedback = await db.feedback.get();
     return response.create(200, feedback);
   } catch(e) {
+    console.log(`error: ${e}`);
     return response.genericError();
   }
 };

@@ -46,7 +46,7 @@ const db = {
       };
 
       try {
-        const data = await ddb.query(params);
+        const data = await ddb.query(params).promise();
         console.log(`retrieved feedback from ddb ${JSON.stringify(data)}`);
         return data.Items;
       } catch(e) {
