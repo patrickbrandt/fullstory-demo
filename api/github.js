@@ -32,7 +32,6 @@ const authRequest = (token) => {
 };
 
 const getAccessToken = async () => {
-  // https://developer.github.com/v3/apps/#find-installations
   // TODO: cache access_token and only make /access_tokens service request on a cache miss
   const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
   return JSON.parse(ghResponse);
