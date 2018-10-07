@@ -16,6 +16,32 @@ footer {
   margin-top: 1.5em;
 }
 
+.sentimentFilters input {
+  visibility: hidden;
+  display: flex;
+}
+
+.sentimentFilters .filter {
+  cursor: pointer;
+  display: inline-block;
+  padding: .75em;
+  width: 4em;
+  border-radius: 5px;
+  border: 1px solid #f8598b;
+  margin-right: 1em;
+  text-align: center;
+}
+
+.sentimentFilters .filter.unselect {
+  background-color: #fff;
+  color: #000;
+}
+
+.sentimentFilters .filter.select {
+  background-color: #f8598b;
+  color: #fff;
+}
+
 .feedbackItem {
   display:grid;
   width: 80%;
