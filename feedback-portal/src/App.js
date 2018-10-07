@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import FeedbackTable from './FeedbackTable';
+import FeedbackList from './FeedbackList';
+import SentimentFilter from './SentimentFilter';
 
 class App extends Component {
   constructor(props) {
@@ -46,19 +47,14 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <h1>Feedback Sentiment</h1>
-          <ul>
-            <li><label><input type="checkbox" id="Positive" value="POSITIVE" onClick={this.handleFilterSelect} />Positive</label></li>
-            <li><label><input type="checkbox" id="Neutral" value="NEUTRAL" onClick={this.handleFilterSelect} />Neutral</label></li>
-            <li><label><input type="checkbox" id="Mixed" value="MIXED" onClick={this.handleFilterSelect} />Mixed</label></li>
-            <li><label><input type="checkbox" id="Negative" value="NEGATIVE" onClick={this.handleFilterSelect} />Negative</label></li>
-            <li><label><input type="checkbox" id="Rage" value="RAGE" onClick={this.handleFilterSelect} />Rage</label></li>
-          </ul>
-          {this.state.feedback.length > 0 && !this.state.loading ? (
-            <FeedbackTable Feedback={this.state.feedback}></FeedbackTable>
-          ) : (
-            <p>You haven't received any feedback yet. Go here and send some: <a href="https://wpb.is/FullStory">https://wpb.is/FullStory</a></p>
-          )}
         </header>
+        <SentimentFilter onFilterChange={this.handleFilterSelect} />
+        {this.state.feedback.length > 0 && !this.state.loading ? (
+          <FeedbackList Feedback={this.state.feedback}></FeedbackList>
+        ) : (
+          <p>I haven't received any feedback yet. Please go here and send some: <a href="https://wpb.is/FullStory">https://wpb.is/FullStory</a></p>
+        )}
+        <footer></footer>
       </div>
     );
   }
