@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import FeedbackList from './FeedbackList';
 import SentimentFilter from './SentimentFilter';
+import LoadSpinner from './LoadSpinner';
 
 class App extends Component {
   constructor(props) {
@@ -36,10 +37,12 @@ class App extends Component {
   }
 
   async getFeedback(query) {
+    this.setState(state => state.loading = true);
     const response = await fetch(this.feedbackAPI + (query ? query : ''), {
       method: 'GET'
     });
     const data = await response.json();
+    this.setState(state => state.loading = false);
     return data;
   }
 
@@ -50,6 +53,7 @@ class App extends Component {
           <h1>Feedback Sentiment</h1>
         </header>
         <SentimentFilter onFilterChange={this.handleFilterChange} />
+        <LoadSpinner loading={this.state.loading} />
         {this.state.feedback.length > 0 ? (
           <FeedbackList Feedback={this.state.feedback}></FeedbackList>
         ) : (
