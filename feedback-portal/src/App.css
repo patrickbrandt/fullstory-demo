@@ -1,3 +1,7 @@
+@font-face {
+  font-family: museosanscyrl-700;
+  src: url(./fonts/museosanscyrl-700.ttf);
+}
 .App {
   padding: 0 15% 0 15%;
   display: flex;
@@ -7,7 +11,9 @@
 
 header h1 {
   text-align: center;
-  margin-bottom: 1.5em;
+  margin-bottom: 2rem;
+  font-family: museosanscyrl-700;
+  font-size: 2.3rem;
 }
 
 footer {
