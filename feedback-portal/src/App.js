@@ -12,10 +12,10 @@ class App extends Component {
     };
     this.filters = [];
     this.feedbackAPI = 'https://mh9x17nwee.execute-api.us-east-1.amazonaws.com/v1/feedback';
-    this.handleFilterSelect = this.handleFilterSelect.bind(this);
+    this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
-  async handleFilterSelect(e) {
+  async handleFilterChange(e) {
     const value = e.target.value;
     if (e.target.checked) {
       this.filters.push(value);
@@ -49,7 +49,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Feedback Sentiment</h1>
         </header>
-        <SentimentFilter onFilterChange={this.handleFilterSelect} />
+        <SentimentFilter onFilterChange={this.handleFilterChange} />
         {this.state.feedback.length > 0 ? (
           <FeedbackList Feedback={this.state.feedback}></FeedbackList>
         ) : (
