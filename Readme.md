@@ -3,7 +3,7 @@ A demonstration of how [FullStory's](https://fullstory.com) session replay URLs 
 
 FullStory session replay provides website owners and customer support staff a pixel-perfect replay of real user experiences on their websites.
 
-## Demo components
+## Demo
 Three different components were built to bring this demo together.
 
 ### The Homesite
