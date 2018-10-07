@@ -55,7 +55,7 @@ class App extends Component {
         <SentimentFilter onFilterChange={this.handleFilterChange} />
         <LoadSpinner loading={this.state.loading} />
         {this.state.feedback.length > 0 ? (
-          <FeedbackList Feedback={this.state.feedback}></FeedbackList>
+          <FeedbackList feedback={this.state.feedback}></FeedbackList>
         ) : (
           <p>I haven't received any feedback yet. Please go here and send some: <a href="https://wpb.is/FullStory">https://wpb.is/FullStory</a></p>
         )}
