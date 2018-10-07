@@ -58,7 +58,6 @@ Analyze and store user-entered feedback
 #### body
 mime-type: application/json
 
-#### Parameters
 | Parameter     | Type           | Required  | Description |
 | :------------- | :------------- | :----- | :--- |
 | sessionId      | String | Yes | The session Id provided by the FullStory JavaScript API |
