@@ -11,7 +11,7 @@ Three different components were built to bring this demo together.
 [TBC]
 
 ### The Feedback Portal
-
+![image](https://user-images.githubusercontent.com/11197026/46587220-e43cfb00-ca56-11e8-9a74-a345c4011042.png)
 [TBC]
 
 ### The API
