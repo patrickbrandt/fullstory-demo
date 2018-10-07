@@ -16,7 +16,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ### Responses
 #### 200
 #### Response type
-```JSON
+```
 [
   {
     sessionURL: String,
