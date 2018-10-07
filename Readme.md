@@ -13,13 +13,19 @@ A feedback widget (the blue tab - docked to the right of the screen) sends user-
 
 The Homesite is here: [http://wpb.is/FullStory](http://wpb.is/FullStory)
 
+The code is here: [https://github.com/patrickbrandt/fullstory-demo/tree/master/homesite](https://github.com/patrickbrandt/fullstory-demo/tree/master/homesite)
+
 ### The Feedback Portal
 ![image](https://user-images.githubusercontent.com/11197026/46587232-0e8eb880-ca57-11e8-960b-3ebe32a41e6c.png)
 #### What it does
-All user-entered feedback for all categories are displayed in a portal where feedback can be filtered by sentiment category. Timestamps and FullStory session replay URLs are also available.
+All user-entered feedback for all sentiment categories are displayed in a portal where feedback can be filtered by category. Timestamps and FullStory session replay URLs are also available.
 
 The Feedback Portal is here: [http://wpb.is/FeedbackPortal](http://wpb.is/FeedbackPortal)
 
+The code is here: [https://github.com/patrickbrandt/fullstory-demo/tree/master/feedback-portal](https://github.com/patrickbrandt/fullstory-demo/tree/master/feedback-portal)
+
 ### The API
 
-[TBC]
+The API binds user-entered feedback with sentiment analysis and GitHub integration. Issues are created via a [GitHub](https://developer.github.com/apps/about-apps/#about-github-apps) App I created this is available to repositories in my GitHub account.
+
+The code is here: [https://github.com/patrickbrandt/fullstory-demo/tree/master/api](https://github.com/patrickbrandt/fullstory-demo/tree/master/api)
