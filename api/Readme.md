@@ -44,7 +44,9 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 #### Response type
 ```
 {
-  name: String
-  message: String
+  error: {
+    name: String
+    message: String
+  }
 }
 ```
