@@ -5,6 +5,8 @@
 * Store the results in Amazon DynamoDB.
 * If negative sentiment is detected, create a GitHub issue for this project labeled `negative-feedback`. Include the user-entered text and the FullStory session replay URL.
 
+Code and API components are orchestrated with the [Serverless Framework](http://serverless.com).
+
 ## GET /feedback
 Returns all feedback filtered by sentiment categories (if provided). Results are ordered by creation date, descending.
 ### Request parameters
