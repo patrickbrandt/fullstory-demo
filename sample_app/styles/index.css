@@ -20,7 +20,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #4c5f88;
+  background-color: #882258;
   color: #fff;
   font-family: museosanscyrl-700, sans-serif;
   font-size: 1rem;
@@ -55,7 +55,7 @@ header h1 {
 
 footer {
   width: 100%;
-  background-color: #D44B92;
+  background-color: #4c5f88;
   margin-top: 2em;
   padding-bottom: 1.5em;
   display: flex;
