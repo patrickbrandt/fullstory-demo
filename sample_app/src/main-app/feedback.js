@@ -29,7 +29,6 @@ export class Feedback extends PolymerElement {
   }
 
   async handleSendClick() {
-    this.toggleForm();
     const feedback = this.$.feedback.value;
     if (feedback === '') {
       return;
@@ -89,7 +88,7 @@ export class Feedback extends PolymerElement {
           transform: rotate(-90deg);
           position: absolute;
           left: -3.8em;
-          top: 85px;
+          top: 90px;
           cursor: pointer;
           background-color: #448EE1;
           color: #fff;
@@ -133,7 +132,7 @@ export class Feedback extends PolymerElement {
       <div id="container">
         <div id="handle" on-click="handleFeedbackClick">feedback</div>
         <p>Please let us know how we're doing!</p>
-        <textarea rows="10" cols="50" id="feedback"></textarea>
+        <textarea rows="10" cols="50" id="feedback" on-blur="toggleForm"></textarea>
         <button id="send" on-click="handleSendClick">send</button>
       </div>
     `;
