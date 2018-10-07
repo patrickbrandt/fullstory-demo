@@ -29,7 +29,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ]
 ```
 #### Example
-`/feedback?filter=NEUTRAL`
+/feedback?filter=NEUTRAL
 ```JSON
 [
   {
@@ -41,6 +41,42 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
   }
 ]
 ```
+#### 500
+#### Response type
+```
+{
+  error: {
+    name: String
+    message: String
+  }
+}
+```
+
+## POST /feedback
+Analyze and store user-entered feedback
+### Request parameters
+#### body
+mime-type: application/json
+
+#### Parameters
+| Parameter     | Type           | Required  | Description |
+| :------------- | :------------- | :----- | :--- |
+| sessionId      | String | Yes | The session Id provided by the FullStory JavaScript API |
+| sessionURL      | String | Yes | The session replay URL provided by the FullStory JavaScript API |
+| feedback      | String | Yes | User-entered feedback |
+
+### Responses
+#### 200
+
+If the feedback is not categorized as negative, this is the response:
+```JSON
+{
+    "message": "😊 only happy thoughts 😊"
+}
+```
+
+If the feedback is categorized as negative, the response is a pass-through from the GitHub [Create Issue API](https://developer.github.com/v3/issues/#create-an-issue).
+
 #### 500
 #### Response type
 ```
