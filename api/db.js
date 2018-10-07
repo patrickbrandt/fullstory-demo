@@ -49,7 +49,7 @@ const db = {
       try {
         const data = await ddb.scan(params).promise();
         console.log(`retrieved feedback from ddb ${JSON.stringify(data)}`);
-        return data.Items;
+        return data.Items.reverse();
       } catch(e) {
         console.log(`error retrieving feedback: ${e}`);
         throw e;
