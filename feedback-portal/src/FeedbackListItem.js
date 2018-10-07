@@ -15,7 +15,7 @@ class FeedbackListItem extends Component {
         sentimentEmoji = <Emoji sentiment='Mixed' symbol='😕' />
         break;
       case 'NEGATIVE':
-        sentimentEmoji = <Emoji sentiment='Negative' symbol='🙁' />
+        sentimentEmoji = <Emoji sentiment='Negative' symbol='☹️' />
         break;
       case 'RAGE':
         sentimentEmoji = <Emoji sentiment='Rage' symbol='😡' />

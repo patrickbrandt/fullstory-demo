@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import FeedbackList from './FeedbackList';
 import SentimentFilter from './SentimentFilter';
@@ -26,20 +25,22 @@ class App extends Component {
     }
 
     const query = `?filter=${this.filters.join(',')}`;
-    const response = await fetch(this.feedbackAPI + query, {
-      method: 'GET'
-    });
-    const feedback = await response.json();
+    const feedback = await this.getFeedback(query);
     this.setState(state => ({feedback}));
   }
 
   async componentDidMount() {
-    const response = await fetch(this.feedbackAPI, {
-      method: 'GET'
-    });
-    const feedback = await response.json();
+    const feedback = await this.getFeedback();
     this.setState(state => ({feedback}));
     this.setState(state => (state.loading = false));
+  }
+
+  async getFeedback(query) {
+    const response = await fetch(this.feedbackAPI + (query ? query : ''), {
+      method: 'GET'
+    });
+    const data = await response.json();
+    return data;
   }
 
   render() {
@@ -49,7 +50,7 @@ class App extends Component {
           <h1>Feedback Sentiment</h1>
         </header>
         <SentimentFilter onFilterChange={this.handleFilterSelect} />
-        {this.state.feedback.length > 0 && !this.state.loading ? (
+        {this.state.feedback.length > 0 ? (
           <FeedbackList Feedback={this.state.feedback}></FeedbackList>
         ) : (
           <p>I haven't received any feedback yet. Please go here and send some: <a href="https://wpb.is/FullStory">https://wpb.is/FullStory</a></p>

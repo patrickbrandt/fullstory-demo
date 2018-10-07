@@ -55,18 +55,18 @@ class SentimentFilter extends Component {
 
   render() {
     return (
-      <div className="sentimentFilters">
-        <div className={`filter ${this.state.toggles.positive ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('positive')}><Emoji sentiment='Positive' symbol='🙂' /></div>
-        <div className={`filter ${this.state.toggles.neutral ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('neutral')}><Emoji sentiment='Neutral' symbol='😐' /></div>
-        <div className={`filter ${this.state.toggles.mixed ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('mixed')}><Emoji sentiment='Mixed' symbol='😕' /></div>
-        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('negative')}><Emoji sentiment='Negative' symbol='🙁' /></div>
-        <div className={`filter ${this.state.toggles.rage ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('rage')}><Emoji sentiment='' symbol='😡' /><div>Rage</div></div>
+      <div className='sentimentFilters'>
+        <div className={`filter ${this.state.toggles.positive ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('positive')}><Emoji symbol='🙂' /><div>Positive</div></div>
+        <div className={`filter ${this.state.toggles.neutral ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('neutral')}><Emoji symbol='😐' /><div>Neutral</div></div>
+        <div className={`filter ${this.state.toggles.mixed ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('mixed')}><Emoji symbol='😕' /><div>Mixed</div></div>
+        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('negative')}><Emoji symbol='☹️' /><div>Negative</div></div>
+        <div className={`filter ${this.state.toggles.rage ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('rage')}><Emoji symbol='😡' /><div>Rage</div></div>
 
-        <input ref={this.positiveCheck} type="checkbox" id="Positive" value="POSITIVE" onClick={this.handleCheck} />
-        <input ref={this.neutralCheck} type="checkbox" id="Neutral" value="NEUTRAL" onClick={this.handleCheck} />
-        <input ref={this.mixedCheck} type="checkbox" id="Mixed" value="MIXED" onClick={this.handleCheck} />
-        <input ref={this.negativeCheck} type="checkbox" id="Negative" value="NEGATIVE" onClick={this.handleCheck} />
-        <input ref={this.rageCheck} type="checkbox" id="Rage" value="RAGE" onClick={this.handleCheck} />
+        <input ref={this.positiveCheck} type='checkbox' value='POSITIVE' onClick={this.handleCheck} />
+        <input ref={this.neutralCheck} type='checkbox' value='NEUTRAL' onClick={this.handleCheck} />
+        <input ref={this.mixedCheck} type='checkbox' value='MIXED' onClick={this.handleCheck} />
+        <input ref={this.negativeCheck} type='checkbox' value='NEGATIVE' onClick={this.handleCheck} />
+        <input ref={this.rageCheck} type='checkbox' value='RAGE' onClick={this.handleCheck} />
       </div>
     );
   }
