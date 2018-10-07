@@ -49,7 +49,9 @@ const db = {
       try {
         const data = await ddb.scan(params).promise();
         console.log(`retrieved feedback from ddb ${JSON.stringify(data)}`);
-        return data.Items.reverse();
+        return data.Items.sort((a, b) => {
+          return a.date < b.date;
+        });
       } catch(e) {
         console.log(`error retrieving feedback: ${e}`);
         throw e;
