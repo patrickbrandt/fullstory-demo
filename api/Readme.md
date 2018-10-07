@@ -10,7 +10,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ### Request parameters
 #### query string
 | Parameter     | Type           | Required  | Description |
-| ------------- | ------------- | ----- | --- |
+| :------------- | :------------- | :----- | :--- |
 | filter      | enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
 
 ### Responses
