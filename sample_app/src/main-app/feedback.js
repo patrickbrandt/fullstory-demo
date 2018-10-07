@@ -55,7 +55,7 @@ export class Feedback extends PolymerElement {
 
   toggleForm() {
     if (this.visible) {
-      this.style.right = '-340px';
+      this.style.right = '-355px';
     } else {
       this.$.feedback.focus();
       this.style.right = '0';
@@ -69,28 +69,70 @@ export class Feedback extends PolymerElement {
         :host {
           position: fixed;
           bottom: 50px;
-          right: -340px;
+          right: -355px;
           transition-property: right;
           transition-duration: 0.15s;
           transition-timing-function: ease-in;
         }
         #container {
           padding-right: 1em;
+          background-color: #448EE1;
+          padding:1em;
+          font-family: sans-serif;
+          color: #fff;
+          font-size: .9rem;
+        }
+        #container p {
+          margin-top: .1rem;
         }
         #handle {
           transform: rotate(-90deg);
           position: absolute;
-          left: -40px;
-          top: 20px;
+          left: -3.8em;
+          top: 85px;
           cursor: pointer;
+          background-color: #448EE1;
+          color: #fff;
+          padding: .8rem;
+          border-top-left-radius: 50%;
+          border-top-right-radius: 50%;
+          font-family: serif;
+          font-size: 1.15rem;
         }
         button {
           display: block;
-          right: 0;
+          border: none;
+          margin: 0;
+          padding: .5rem 1rem;
+          border-radius: 5%;
+          text-decoration: none;
+          background: #F3874A;
+          color: #ffffff;
+          font-family: sans-serif;
+          font-size: .9rem;
+          cursor: pointer;
+          text-align: center;
+          transition: background 250ms ease-in-out,
+                      transform 150ms ease;
+        }
+
+        button:hover,
+        button:focus {
+          background: #0053ba;
+        }
+
+        button:focus {
+          outline: 1px solid #fff;
+          outline-offset: -4px;
+        }
+
+        button:active {
+          transform: scale(0.99);
         }
       </style>
       <div id="container">
         <div id="handle" on-click="handleFeedbackClick">feedback</div>
+        <p>Please let us know how we're doing!</p>
         <textarea rows="10" cols="50" id="feedback"></textarea>
         <button id="send" on-click="handleSendClick">send</button>
       </div>
