@@ -7,7 +7,7 @@ FullStory session replay provides website owners and customer support staff a pi
 Three different components were built to bring this demo together.
 
 ### The Homesite
-
+![image](https://user-images.githubusercontent.com/11197026/46587200-86a8ae80-ca56-11e8-8d20-259e635f19b5.png)
 [TBC]
 
 ### The Feedback Portal
