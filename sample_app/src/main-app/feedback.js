@@ -29,6 +29,7 @@ export class Feedback extends PolymerElement {
   }
 
   async handleSendClick() {
+    this.toggleForm();
     const feedback = this.$.feedback.value;
     if (feedback === '') {
       return;
@@ -132,7 +133,7 @@ export class Feedback extends PolymerElement {
       <div id="container">
         <div id="handle" on-click="handleFeedbackClick">feedback</div>
         <p>Please let us know how we're doing!</p>
-        <textarea rows="10" cols="50" id="feedback" on-blur="toggleForm"></textarea>
+        <textarea rows="10" cols="50" id="feedback"></textarea>
         <button id="send" on-click="handleSendClick">send</button>
       </div>
     `;
