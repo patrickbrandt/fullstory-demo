@@ -4,13 +4,13 @@
 * Pass the text into [Amazon Comprehend](https://aws.amazon.com/comprehend/).
 * Store the results in Amazon DynamoDB.
 * If negative sentiment is detected, create a GitHub issue for this project labeled `negative-feedback`. Include the user-entered text and the FullStory session replay URL.
-# API Reference
+
 ## GET /feedback
 Returns all feedback filtered by sentiment categories (if provided). Results are ordered by creation date, descending.
 ### Request parameters
 #### query string
 | Parameter     | Type           | Required  | Description |
-| ------------- | ------------- | ----- |
+| ------------- | ------------- | ----- | --- |
 | filter      | enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
 
 ### Responses
