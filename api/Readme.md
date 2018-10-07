@@ -29,6 +29,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ]
 ```
 #### Example
+`/feedback?filter=NEUTRAL`
 ```JSON
 [
   {
