@@ -13,6 +13,7 @@
 
 body {
   font-family: museosanscyrl-300, sans-serif;
+  line-height: 1.5;
 }
 
 header {
@@ -45,7 +46,7 @@ header h1 {
   background-position: center;
   display: block;
   height: 13rem;
-  width: 100%
+  width: 100%;
 }
 
 #container {
