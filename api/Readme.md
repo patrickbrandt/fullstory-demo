@@ -37,12 +37,12 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     "sessionId": "5672330625810432:5742506566221824",
     "feedback": "oh well..\n\nI'll live with it",
     "sentiment": "NEUTRAL"
-  },
+  }
 ]
 ```
 #### 500
 #### Response type
-```JSON
+```
 {
   name: String
   message: String
