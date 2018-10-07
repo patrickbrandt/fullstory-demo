@@ -25,7 +25,6 @@ class FeedbackListItem extends Component {
     const feedback = this.props.item.feedback;
     const feedbackDate = this.props.item.date;
     const sessionURL = this.props.item.sessionURL;
-    console.log(feedback)
     return (
       <div className='feedbackItem'>
         <h4>{feedback}</h4>
