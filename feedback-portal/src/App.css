@@ -89,3 +89,7 @@ footer {
   text-decoration: none;
   color: #f8598b;
 }
+
+.spinner {
+  height: 1em;
+}
