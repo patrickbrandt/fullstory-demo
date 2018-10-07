@@ -28,7 +28,6 @@ class SentimentFilter extends Component {
   }
 
   handleFilterClick(id) {
-    console.log(id);
     switch (id) {
       case 'positive':
         this.positiveCheck.current.click();
