@@ -87,7 +87,7 @@ export class Feedback extends PolymerElement {
         #handle {
           transform: rotate(-90deg);
           position: absolute;
-          left: -3.8em;
+          left: -4.2rem;
           top: 90px;
           cursor: pointer;
           background-color: #448EE1;

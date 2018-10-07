@@ -9,9 +9,9 @@
 
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/manifest.json">
-
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/index.css">
     <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
-
     <script type="module" src="/src/main-app/feedback.js" crossorigin></script>
 
     <script>
@@ -36,12 +36,57 @@
     </script>
   </head>
   <body>
-    <h1>This is the beginning</h1>
-    <h3>Some controls</h3>
-    <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-    <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-    <input type="checkbox" name="vehicle3" value="Boat"> I have a boat<br><br>
-    <textarea rows="10" cols="50"></textarea>
+    <header>
+      <h1>User feedback and sentiment analyis with</h1>
+      <div id="fullstory-logo"></div>
+    </header>
+    <div id="container">
+      <h3>What is this?</h3>
+      <p>This is a demonstration of how <a href="http://www.fullstory.com">FullStory's</a> session replay technology can be fused with sentiment anaylsis on customer feedback to automatically generate issues in GitHub.</p>
+      <h3>How can I test it out?</h3>
+      <ol>
+        <li>Click the Feedback tab parked over there on the right-hand side of this screen &rArr;</li>
+        <li>Type something unfriendly (feedback with negative sentiment will create a GitHub issue)</li>
+        <li>Send your feedback</li>
+        <li>Checkout the GitHub issues list for this project: <a href="https://github.com/patrickbrandt/fullstory-demo/issues">https://github.com/patrickbrandt/fullstory-demo/issues</a></li>
+        <li>You should see a new open issue with a "negative-feedback" label that contains your feedback and a FullStory session replay URL</li>
+      </ol>
+      <h3>What about feedback that isn't negative?</h3>
+      <p>I've got you covered. You can find all feedback and FullStory session replay URLs here: <a href="https://wpb.is/FeedbackPortal">https://wpb.is/FeedbackPortal</a></p>
+      <h3>What's the tech stack?</h3>
+      <ul>
+        <li><a href="https://www.polymer-project.org/">Polymer 3.0</a> for the feedback widget</li>
+        <li><a href="https://reactjs.org/">React</a> for the feedback portal</li>
+        <li><a href="http://serverless.com">The Serverless Framework</a> with <a href="https://aws.amazon.com/api-gateway/">AWS API Gateway</a>, <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, and <a href="https://aws.amazon.com/dynamodb/">DynamoDB</a> for the integration API</li>
+        <li><a href="https://aws.amazon.com/comprehend/">AWS Comprehend</a> for sentiment analysis</li>
+        <li><a href="https://developer.github.com/apps/about-apps/">GitHub Apps</a> and the <a href="https://developer.github.com/v3/apps/">GitHub REST API</a> for creating issues on GitHub</li>
+        <li><a href="https://help.fullstory.com/develop-js">The FullStory JavaScript API</a> for Session Replay URLs</li>
+      </ul>
+      <h3>How can I watch the replays?</h3>
+      <p>Right now all session replay URLs are tied to my FullStory account. However, code for everything outlined on this page is on GitHub: <a href="https://github.com/patrickbrandt/fullstory-demo">https://github.com/patrickbrandt/fullstory-demo</a>. Feel free to fork it and update all account ids (for FullStory and GitHub) to make it your own.</p>
+      <h2>Session Replay Playground</h2>
+      <p>A random assortment of HTML elements that you can interact with to build <a href="https://help.fullstory.com/using/user-funnel-searchie">event funnels</a> or just watch replays</p>
+
+      <label><input type="checkbox" name="vehicle1" value="Bike"> I have a bike</label><br>
+      <label><input type="checkbox" name="vehicle2" value="Car"> I have a car</label><br>
+      <label><input type="checkbox" name="vehicle3" value="Boat"> I have a boat</label><br><br>
+      <div><textarea rows="10" cols="50"></textarea></div>
+      <button>This does nothing</button>
+    </div>
+    <footer>
+      <div>
+        <img src="https://cdn.wpb.is/images/logos/white-linkedin-64.png" />
+        <a href="https://wpb.is/LinkedIn">https://wpb.is/LinkedIn</a>
+      </div>
+      <div>
+        <img src="https://cdn.wpb.is/images/logos/GitHub-Mark-Light-64px.png" />
+        <a href="https://wpb.is/GitHub">https://wpb.is/GitHub</a>
+      </div>
+      <div>
+        <img src="https://cdn.wpb.is/images/logos/Monogram.png" />
+        <a href="https://wpb.is/Medium">https://wpb.is/Medium</a>
+      </div>
+    </footer>
     <feedback-form></feedback-form>
   </body>
 </html>
