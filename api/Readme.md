@@ -25,7 +25,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     date: String (ISO 8601 format),
     sessionId: String,
     feedback: String,
-    sentiment: String Enum: POSITIVE|NEUTRAL|MIXED|NEGATIVE|RAGE
+    sentiment: Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
   }
 ]
 ```
