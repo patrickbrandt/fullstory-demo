@@ -1,7 +1,7 @@
 class Response {
-  create(statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) {
+  static create(statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) {
     return {
-      statusCode : statusCode,
+      statusCode,
       headers: !cors ? {} : cors,
       body: JSON.stringify(body),
     };
