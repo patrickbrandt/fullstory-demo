@@ -25,9 +25,9 @@ provider:
       Resource: "*"
   environment:
     FEEDBACK_TABLE_NAME: ${self:custom.feedbackTableName}
-    SIGNING_KEY: ${file(secrets_fullstory-feedback.yml):SIGNING_KEY}
+    GITHUB_SIGNING_KEY: ${file(secrets_fullstory-feedback.yml):GITHUB_SIGNING_KEY}
     GITHUB_APP_ID: ${file(secrets_fullstory-feedback.yml):GITHUB_APP_ID}
-    INSTALLATION_ID: ${file(secrets_fullstory-feedback.yml):INSTALLATION_ID}
+    GITHUB_INSTALLATION_ID: ${file(secrets_fullstory-feedback.yml):GITHUB_INSTALLATION_ID}
 functions:
   ping:
     handler: handler.ping
@@ -60,8 +60,6 @@ resources:
             AttributeType: S
           - AttributeName: date
             AttributeType: S
-          - AttributeName: sentiment
-            AttributeType: S
         ProvisionedThroughput:
           WriteCapacityUnits: 5
           ReadCapacityUnits: 5
@@ -71,13 +69,4 @@ resources:
           AttributeName: sessionId
         - KeyType: RANGE
           AttributeName: date
-        GlobalSecondaryIndexes:
-        - IndexName: sentiment-index
-          Projection:
-            ProjectionType: ALL
-          ProvisionedThroughput:
-            WriteCapacityUnits: 5
-            ReadCapacityUnits: 5
-          KeySchema:
-          - KeyType: HASH
-            AttributeName: sentiment
+

@@ -18,7 +18,7 @@ const makeJWT = () => {
   };
   console.log(`creating JWT`);
   try {
-    return jwt.sign(payload, process.env.SIGNING_KEY, { algorithm: 'RS256' });
+    return jwt.sign(payload, process.env.GITHUB_SIGNING_KEY, { algorithm: 'RS256' });
   } catch(e) {
     console.log(`error creating JWT: ${e}`);
     throw e;
@@ -33,7 +33,7 @@ const authRequest = (token) => {
 
 const getAccessToken = async () => {
   // TODO: cache access_token and only make /access_tokens service request on a cache miss
-  const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.INSTALLATION_ID}/access_tokens`);
+  const ghResponse = await authRequest(makeJWT()).post(`/app/installations/${process.env.GITHUB_INSTALLATION_ID}/access_tokens`);
   return JSON.parse(ghResponse);
 };
 
