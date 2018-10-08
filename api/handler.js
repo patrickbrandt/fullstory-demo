@@ -9,7 +9,6 @@ const xss = require("xss");
 module.exports.ping = async (event, context) => {
   return response.create(200, {
       message: 'this is working',
-      input: event,
     });
 };
 
