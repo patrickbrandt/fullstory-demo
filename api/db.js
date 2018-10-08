@@ -27,9 +27,6 @@ const db = {
       }
     },
     get: async (sentimentFilter = ['POSITIVE', 'NEGATIVE', 'NEUTRAL', 'MIXED', 'RAGE']) => {
-      // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Expressions.OperatorsAndFunctions.html
-      // 'in' can only be used for a filter expression: https://stackoverflow.com/questions/32671509/in-statement-in-dynamodb
-      //const KeyConditionExpression = `#sentiment in (${sentimentFilter.join(',')})`;
 
       const ExpressionAttributeValues = sentimentFilter.reduce((acc, value, index) => {
         acc[`:filter${index + 1}`] = value;
