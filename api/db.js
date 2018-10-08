@@ -1,4 +1,5 @@
-const Aws = require('aws-sdk');
+const Aws = require('aws-sdk'); // eslint-disable-line import/no-unresolved
+
 const ddb = new Aws.DynamoDB.DocumentClient();
 
 const db = {
@@ -27,13 +28,12 @@ const db = {
       }
     },
     get: async (sentimentFilter = ['POSITIVE', 'NEGATIVE', 'NEUTRAL', 'MIXED', 'RAGE']) => {
-
       const ExpressionAttributeValues = sentimentFilter.reduce((acc, value, index) => {
         acc[`:filter${index + 1}`] = value;
         return acc;
       }, {});
       const FilterExpression = `#sentiment in (${Object.keys(ExpressionAttributeValues).join(',')})`;
-      const ExpressionAttributeNames = { '#sentiment' : 'sentiment' };
+      const ExpressionAttributeNames = { '#sentiment': 'sentiment' };
       const params = {
         TableName: process.env.FEEDBACK_TABLE_NAME,
         ExpressionAttributeValues,
@@ -46,10 +46,8 @@ const db = {
       try {
         const data = await ddb.scan(params).promise();
         console.log(`retrieved feedback from ddb ${JSON.stringify(data)}`);
-        return data.Items.sort((a, b) => {
-          return b.date.localeCompare(a.date);
-        });
-      } catch(e) {
+        return data.Items.sort((a, b) => b.date.localeCompare(a.date));
+      } catch (e) {
         console.log(`error retrieving feedback: ${e}`);
         throw e;
       }

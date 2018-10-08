@@ -6,7 +6,7 @@ const baseRequest = request.defaults({
   headers: {
     Accept: 'application/vnd.github.machine-man-preview+json',
     'User-Agent': 'fullstory-feedback',
-    },
+  },
 });
 
 const makeJWT = () => {
@@ -16,20 +16,18 @@ const makeJWT = () => {
     exp: issued + (10 * 60),
     iss: process.env.GITHUB_APP_ID,
   };
-  console.log(`creating JWT`);
+  console.log('creating JWT');
   try {
     return jwt.sign(payload, process.env.GITHUB_SIGNING_KEY, { algorithm: 'RS256' });
-  } catch(e) {
+  } catch (e) {
     console.log(`error creating JWT: ${e}`);
     throw e;
   }
 };
 
-const authRequest = (token) => {
-  return baseRequest.defaults({
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
+const authRequest = token => baseRequest.defaults({
+  headers: { Authorization: `Bearer ${token}` },
+});
 
 const getAccessToken = async () => {
   // TODO: cache access_token and only make /access_tokens service request on a cache miss
@@ -53,7 +51,7 @@ const createIssue = async (title, text) => {
         labels: ['negative-feedback'],
       },
     });
-  } catch(e) {
+  } catch (e) {
     console.log(`there was an error creating an issue: ${e}`);
     throw e;
   }
@@ -65,4 +63,3 @@ module.exports = {
     create: createIssue,
   },
 };
-
