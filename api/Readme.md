@@ -26,8 +26,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     sessionId: String,
     feedback: String,
     sentiment: String Enum: POSITIVE|NEUTRAL|MIXED|NEGATIVE|RAGE
-  },
-    ...
+  }
 ]
 ```
 #### Example
