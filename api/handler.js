@@ -4,6 +4,7 @@ const github = require('./github');
 const db = require('./db');
 const Response = require('./Response');
 const response = new Response();
+const xss = require("xss");
 
 module.exports.ping = async (event, context) => {
   return response.create(200, {
@@ -49,6 +50,7 @@ module.exports.get = async (event, context) => {
 
   try {
     const feedback = filter ? await db.feedback.get(filter.split(',')) : await db.feedback.get();
+    feedback.feedback = xss(feedback.feedback);
     return response.create(200, feedback);
   } catch(e) {
     console.log(`error: ${e}`);
