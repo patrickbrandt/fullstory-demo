@@ -3,6 +3,27 @@ const prehend = new Aws.Comprehend();
 const github = require('./github');
 const db = require('./db');
 
+class Response {
+  create(statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) {
+    return {
+      statusCode : statusCode,
+      headers: !cors ? {} : cors,
+      body: JSON.stringify(body),
+    };
+  }
+
+  genericError() {
+    return this.create(500, {
+      error: {
+        name: 'server_error',
+        message: 'server error',
+      },
+    });
+  }
+}
+
+const response = new Response();
+
 module.exports.ping = async (event, context) => {
   return response.create(200, {
       message: 'this is working',
@@ -86,6 +107,7 @@ const sentiment = async (text) => {
   }
 };
 
+/*
 const response = {
   create: (statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) => {
     return {
@@ -100,4 +122,4 @@ const response = {
       message: 'server error'
     });
   },
-};
+};*/
