@@ -7,7 +7,7 @@ export class Feedback extends PolymerElement {
     this.feedbackAPI = 'https://mh9x17nwee.execute-api.us-east-1.amazonaws.com/v1/feedback';
   }
 
-  static get properties () {
+  static get properties() {
     return {
       visible: {
         type: Boolean,
@@ -16,11 +16,11 @@ export class Feedback extends PolymerElement {
       FS: {
         type: Object,
         observer: '_fsChanged',
-      }
+      },
     };
   }
 
-  _fsChanged() {
+  static _fsChanged() {
     console.log('FS was set in feedback form');
   }
 
@@ -41,7 +41,7 @@ export class Feedback extends PolymerElement {
       mode: 'cors',
       cache: 'no-cache',
       headers: {
-          'Content-Type': 'application/json; charset=utf-8',
+        'Content-Type': 'application/json; charset=utf-8',
       },
       body: JSON.stringify({
         sessionId,
@@ -63,7 +63,7 @@ export class Feedback extends PolymerElement {
     this.visible = !this.visible;
   }
 
-  static get template () {
+  static get template() {
     return html`
       <style>
         :host {
