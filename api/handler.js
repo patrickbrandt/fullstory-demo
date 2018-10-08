@@ -89,20 +89,3 @@ const sentiment = async (text) => {
     throw e;
   }
 };
-
-/*
-const response = {
-  create: (statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) => {
-    return {
-      statusCode : statusCode,
-      headers: !cors ? {} : cors,
-      body: JSON.stringify(body),
-    };
-  },
-  genericError: () => {
-    return this.create(500, {
-      name: 'server_error',
-      message: 'server error'
-    });
-  },
-};*/
