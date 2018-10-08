@@ -20,7 +20,7 @@ class SentimentFilter extends Component {
         negative: false,
         rage: false,
       },
-    }
+    };
   }
 
   handleCheck(e) {
@@ -49,23 +49,38 @@ class SentimentFilter extends Component {
   }
 
   toggleFilter(id) {
-    this.setState(state => state.toggles[id] = !state.toggles[id]);
+    this.setState((state) => { state.toggles[id] = !state.toggles[id]; });
   }
 
   render() {
     return (
-      <div className='sentimentFilters'>
-        <div className={`filter ${this.state.toggles.positive ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('positive')}><Emoji symbol='🙂' /><div>Positive</div></div>
-        <div className={`filter ${this.state.toggles.neutral ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('neutral')}><Emoji symbol='😐' /><div>Neutral</div></div>
-        <div className={`filter ${this.state.toggles.mixed ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('mixed')}><Emoji symbol='😕' /><div>Mixed</div></div>
-        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('negative')}><Emoji symbol='☹️' /><div>Negative</div></div>
-        <div className={`filter ${this.state.toggles.rage ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('rage')}><Emoji symbol='😡' /><div>Rage</div></div>
+      <div className="sentimentFilters">
+        <div className={`filter ${this.state.toggles.positive ? 'select' : 'unselect'}`} onClick={() => this.handleFilterClick('positive')}>
+          <Emoji symbol="🙂" />
+          <div>Positive</div>
+        </div>
+        <div className={`filter ${this.state.toggles.neutral ? 'select' : 'unselect'}`} onClick={() => this.handleFilterClick('neutral')}>
+          <Emoji symbol="😐" />
+          <div>Neutral</div>
+        </div>
+        <div className={`filter ${this.state.toggles.mixed ? 'select' : 'unselect'}`} onClick={() => this.handleFilterClick('mixed')}>
+          <Emoji symbol="😕" />
+          <div>Mixed</div>
+        </div>
+        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect'}`} onClick={() => this.handleFilterClick('negative')}>
+          <Emoji symbol="☹️" />
+          <div>Negative</div>
+        </div>
+        <div className={`filter ${this.state.toggles.rage ? 'select' : 'unselect'}`} onClick={() => this.handleFilterClick('rage')}>
+          <Emoji symbol="😡" />
+          <div>Rage</div>
+        </div>
 
-        <input ref={this.positiveCheck} type='checkbox' value='POSITIVE' onClick={this.handleCheck} />
-        <input ref={this.neutralCheck} type='checkbox' value='NEUTRAL' onClick={this.handleCheck} />
-        <input ref={this.mixedCheck} type='checkbox' value='MIXED' onClick={this.handleCheck} />
-        <input ref={this.negativeCheck} type='checkbox' value='NEGATIVE' onClick={this.handleCheck} />
-        <input ref={this.rageCheck} type='checkbox' value='RAGE' onClick={this.handleCheck} />
+        <input ref={this.positiveCheck} type="checkbox" value="POSITIVE" onClick={this.handleCheck} />
+        <input ref={this.neutralCheck} type="checkbox" value="NEUTRAL" onClick={this.handleCheck} />
+        <input ref={this.mixedCheck} type="checkbox" value="MIXED" onClick={this.handleCheck} />
+        <input ref={this.negativeCheck} type="checkbox" value="NEGATIVE" onClick={this.handleCheck} />
+        <input ref={this.rageCheck} type="checkbox" value="RAGE" onClick={this.handleCheck} />
       </div>
     );
   }

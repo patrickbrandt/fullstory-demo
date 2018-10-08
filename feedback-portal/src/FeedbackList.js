@@ -5,11 +5,8 @@ class FeedbackList extends Component {
   render() {
     return (
       <React.Fragment>
-      {this.props.feedback.map((f, i) =>
-        <FeedbackListItem item={f} key={i} />
-      )}
-      </React.Fragment>
-    );
+        {this.props.feedback.map((f, i) => <FeedbackListItem item={f} key={i} />)}
+      </React.Fragment>);
   }
 }
 

@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 
-class  Emoji extends Component {
+class Emoji extends Component {
   render() {
     return (
-      <div className='sentiment'>
+      <div className="sentiment">
         <span
-            role='img'
-            aria-label={this.props.sentiment ? this.props.sentiment : ''}
-            aria-hidden={this.props.sentiment ? 'false' : 'true'}
+          role="img"
+          aria-label={this.props.sentiment ? this.props.sentiment : ''}
+          aria-hidden={this.props.sentiment ? 'false' : 'true'}
         >
-            {this.props.symbol}
+          {this.props.symbol}
         </span>
         {this.props.sentiment}
       </div>
-    )
+    );
   }
 }
 
