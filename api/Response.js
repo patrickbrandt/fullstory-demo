@@ -1,5 +1,5 @@
 class Response {
-  static create(statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) {
+  create(statusCode, body, cors = { 'Access-Control-Allow-Origin': '*' }) {
     return {
       statusCode,
       headers: !cors ? {} : cors,
