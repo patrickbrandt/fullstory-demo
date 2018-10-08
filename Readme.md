@@ -26,6 +26,6 @@ The code is here: [https://github.com/patrickbrandt/fullstory-demo/tree/master/f
 
 ### The API
 
-The API binds user-entered feedback with sentiment analysis and GitHub integration. Issues are created via a [GitHub App](https://developer.github.com/apps/about-apps/#about-github-apps) I created that is available to repositories in my GitHub account.
+The API binds user-entered feedback with sentiment analysis and GitHub integration. Issues are created via a [GitHub App](https://developer.github.com/apps/about-apps/#about-github-apps) available to repositories in my GitHub account.
 
 The code is here: [https://github.com/patrickbrandt/fullstory-demo/tree/master/api](https://github.com/patrickbrandt/fullstory-demo/tree/master/api)
