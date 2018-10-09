@@ -49,6 +49,11 @@ footer {
   color: #fff;
 }
 
+.issueCount {
+  font-family: museosanscyrl-700;
+  margin-top: -1.2em;
+}
+
 .feedbackItem {
   display:grid;
   width: 80%;

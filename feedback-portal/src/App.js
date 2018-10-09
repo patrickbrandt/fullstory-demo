@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import FeedbackList from './FeedbackList';
 import SentimentFilter from './SentimentFilter';
+import IssueCount from './IssueCount';
 import LoadSpinner from './LoadSpinner';
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     this.state = {
       feedback: [],
       loading: true,
+      issueCount: 0,
     };
     this.filters = [];
     this.feedbackAPI = 'https://mh9x17nwee.execute-api.us-east-1.amazonaws.com/v1/feedback';
@@ -27,7 +29,7 @@ class App extends Component {
 
     const query = `?filter=${this.filters.join(',')}`;
     const feedback = await this.getFeedback(query);
-    this.setState(state => ({feedback}));
+    this.setState(() => ({feedback}));
   }
 
   async componentDidMount() {
@@ -43,6 +45,7 @@ class App extends Component {
     });
     const data = await response.json();
     this.setState(state => state.loading = false);
+    this.setState(state => (state.issueCount = data.length));
     return data;
   }
 
@@ -53,6 +56,7 @@ class App extends Component {
           <h1>Feedback Sentiment</h1>
         </header>
         <SentimentFilter onFilterChange={this.handleFilterChange} />
+        <IssueCount count={this.state.issueCount} />
         <LoadSpinner loading={this.state.loading} />
         {this.state.feedback.length > 0 ? (
           <FeedbackList feedback={this.state.feedback}></FeedbackList>
