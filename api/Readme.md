@@ -13,7 +13,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 #### query string
 | Parameter     | Type           | Required  | Description |
 | :------------- | :------------- | :----- | :--- |
-| filter      | enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
+| filter      | Enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
 
 ### Responses
 #### 200
