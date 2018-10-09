@@ -21,11 +21,11 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ```
 [
   {
-    sessionURL: String,
-    date: String (ISO 8601 format),
-    sessionId: String,
-    feedback: String,
-    sentiment: Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
+    "sessionURL": String,
+    "date": String (ISO 8601 format),
+    "sessionId": String,
+    "feedback": String,
+    "sentiment": Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
   }
 ]
 ```
@@ -53,9 +53,9 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 #### Response type
 ```
 {
-  error: {
-    name: String
-    message: String
+  "error": {
+    "name": String
+    "message": String
   }
 }
 ```
