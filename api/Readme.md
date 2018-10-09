@@ -30,7 +30,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ]
 ```
 #### Example
-/feedback?filter=NEUTRAL
+/feedback?filter=NEUTRAL,POSITIVE
 ```JSON
 [
   {
@@ -39,6 +39,13 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     "sessionId": "5672330625810432:5742506566221824",
     "feedback": "oh well..\n\nI'll live with it",
     "sentiment": "NEUTRAL"
+  },
+  {
+    "sessionURL": "https://app.fullstory.com/ui/F7F6T/session/5717023518621696%3A5724160613416960%3A1539008933563",
+    "date": "2018-10-08T14:28:49.015Z",
+    "sessionId": "5717023518621696:5724160613416960",
+    "feedback": "one more pass - positive: this is great!",
+    "sentiment": "POSITIVE"
   }
 ]
 ```
