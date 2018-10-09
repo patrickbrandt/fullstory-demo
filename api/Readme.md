@@ -88,9 +88,9 @@ If the feedback is categorized as negative, the response is a pass-through from 
 #### Response type
 ```
 {
-  error: {
-    name: String
-    message: String
+  "error": {
+    "name": String
+    "message": String
   }
 }
 ```
