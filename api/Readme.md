@@ -44,7 +44,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     "sessionURL": "https://app.fullstory.com/ui/F7F6T/session/5717023518621696%3A5724160613416960%3A1539008933563",
     "date": "2018-10-08T14:28:49.015Z",
     "sessionId": "5717023518621696:5724160613416960",
-    "feedback": "one more pass - positive: this is great!",
+    "feedback": "this is great!",
     "sentiment": "POSITIVE"
   }
 ]
