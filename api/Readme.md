@@ -13,7 +13,7 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 #### query string
 | Parameter     | Type           | Required  | Description |
 | :------------- | :------------- | :----- | :--- |
-| filter      | enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
+| filter      | Enum | No | Accepted values are: 'POSITIVE', 'NEUTRAL', 'MIXED', 'NEGATIVE', 'RAGE' |
 
 ### Responses
 #### 200
@@ -21,16 +21,16 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 ```
 [
   {
-    sessionURL: String,
-    date: String (ISO 8601 format),
-    sessionId: String,
-    feedback: String,
-    sentiment: Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
+    "sessionURL": String,
+    "date": String (ISO 8601 format),
+    "sessionId": String,
+    "feedback": String,
+    "sentiment": Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
   }
 ]
 ```
 #### Example
-/feedback?filter=NEUTRAL
+/feedback?filter=NEUTRAL,POSITIVE
 ```JSON
 [
   {
@@ -39,6 +39,13 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
     "sessionId": "5672330625810432:5742506566221824",
     "feedback": "oh well..\n\nI'll live with it",
     "sentiment": "NEUTRAL"
+  },
+  {
+    "sessionURL": "https://app.fullstory.com/ui/F7F6T/session/5717023518621696%3A5724160613416960%3A1539008933563",
+    "date": "2018-10-08T14:28:49.015Z",
+    "sessionId": "5717023518621696:5724160613416960",
+    "feedback": "this is great!",
+    "sentiment": "POSITIVE"
   }
 ]
 ```
@@ -46,9 +53,9 @@ Returns all feedback filtered by sentiment categories (if provided). Results are
 #### Response type
 ```
 {
-  error: {
-    name: String
-    message: String
+  "error": {
+    "name": String
+    "message": String
   }
 }
 ```
@@ -81,9 +88,9 @@ If the feedback is categorized as negative, the response is a pass-through from 
 #### Response type
 ```
 {
-  error: {
-    name: String
-    message: String
+  "error": {
+    "name": String
+    "message": String
   }
 }
 ```
