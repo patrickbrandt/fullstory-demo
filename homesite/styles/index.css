@@ -79,7 +79,7 @@ footer a {
   margin-left: .5em;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 670px) {
   #container {
     padding: 0 2.4rem 0 2rem;
   }
@@ -89,11 +89,17 @@ footer a {
     text-align: center;
   }
   #fullstory-logo {
-    background-size: 90%;
+    background-size: 60%;
     height: 7em;
   }
   footer {
     flex-flow: column;
     justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  #fullstory-logo {
+    background-size: 90%;
   }
 }
