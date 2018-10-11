@@ -81,6 +81,7 @@ export class Feedback extends PolymerElement {
           font-family: sans-serif;
           color: #fff;
           font-size: .9rem;
+          width:325px;
         }
         #container p {
           margin-top: .1rem;
