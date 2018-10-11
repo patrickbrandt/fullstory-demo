@@ -14,6 +14,7 @@
 body {
   font-family: museosanscyrl-300, sans-serif;
   line-height: 1.5;
+  max-width: 2000px;
 }
 
 header {
@@ -76,4 +77,23 @@ footer a {
   text-decoration: none;
   color: #fff;
   margin-left: .5em;
+}
+
+@media (max-width: 420px) {
+  #container {
+    padding: 0 2.4rem 0 2rem;
+  }
+  header h1 {
+    font-size: 1.5rem;
+    padding: 0 1rem 0 1rem;
+    text-align: center;
+  }
+  #fullstory-logo {
+    background-size: 90%;
+    height: 7em;
+  }
+  footer {
+    flex-flow: column;
+    justify-content: center;
+  }
 }

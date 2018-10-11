@@ -104,3 +104,37 @@ footer {
 .spinner {
   height: 1em;
 }
+
+@media (max-width: 768px) {
+  .App {
+    padding: 0 5% 0 5%;
+  }
+}
+
+@media (max-width: 731px) {
+  .feedbackItem {
+    width: 100%;
+    display:grid;
+    padding: .5em;
+    grid-template-areas:
+      "sentiment"
+      "date"
+      "feedback"
+      "replayLink";
+    margin-bottom: 1em;
+  }
+  .sentimentFilters .filter {
+    width: 1rem;
+    padding: 1rem 1rem 1rem .7rem;
+  }
+  .sentimentFilters .filter div:nth-child(2) {
+    display: none;
+  }
+  .date {
+    display: none;
+  }
+  .issueCount {
+    margin-top: -4rem;
+  }
+}
+
