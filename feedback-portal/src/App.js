@@ -27,7 +27,7 @@ class App extends Component {
       this.filters.splice(removeAt, 1);
     }
 
-    const query = `?filter=${this.filters.join(',')}`;
+    const query = `?sentiment=${this.filters.join(',')}`;
     const feedback = await this.getFeedback(query);
     this.setState(() => ({feedback}));
   }

@@ -74,7 +74,7 @@ module.exports.get = async (event) => {
   const qstring = event.queryStringParameters;
   let filter;
   if (qstring) {
-    filter = qstring.filter;
+    filter = qstring.sentiment;
   }
 
   // TODO: validate that filter has expected values
