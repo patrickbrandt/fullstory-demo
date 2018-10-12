@@ -2,8 +2,8 @@
 # FullStory Demo Feedback API
 * Receive user-entered text from the feedback widget on [http://wpb.is/FullStory](http://wpb.is/FullStory).
 * Pass the text into [Amazon Comprehend](https://aws.amazon.com/comprehend/).
-* Store the results in Amazon DynamoDB.
 * If negative sentiment is detected, create a GitHub issue for this project labeled `negative-feedback`. Include the user-entered text and the FullStory session replay URL.
+* Store the results in Amazon DynamoDB.
 
 Code and API components are orchestrated with the [Serverless Framework](http://serverless.com).
 
