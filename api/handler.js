@@ -56,8 +56,10 @@ module.exports.save = async (event) => {
 
   // NOTE: if a session user is deleted in FullStory,
   // their browser sessionId and sessionURL will be null
+  // ALSO: sessionId will be null if one's FullStory pro trial has expired ;)
+  const sessionId = body.sessionId || 'no-id-from-client';
   try {
-    await db.feedback.save(body.sessionId,
+    await db.feedback.save(sessionId,
       body.sessionURL,
       body.feedback,
       sentimentInference.Sentiment,
