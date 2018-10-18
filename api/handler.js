@@ -84,6 +84,7 @@ module.exports.get = async (event) => {
   try {
     const feedback = filter ? await db.feedback.get(filter.split(',')) : await db.feedback.get();
     feedback.feedback = xss(feedback.feedback);
+    feedback.sessionURL = xss(feedback.sessionURL);
     return response.create(200, feedback);
   } catch (e) {
     console.log(`error: ${e}`);
