@@ -5,4 +5,4 @@ The homesite has a feedback widget where users can provide their thoughts of the
 
 The site has a FullStory JavaScript tag that records sessions and provides a [JavaScript API](https://help.fullstory.com/develop-js) to get session replay URLs. The feedback widget uses `FS.getCurrentSessionURL(true)` to link session replay to the moment feedback was submitted.
 
-The site is vanilla HTML5/CSS3, optimized for dektop and tablet. The feedback widget is a web component built with [Polymer 3.0](https://www.polymer-project.org/). There is a playground near the bottom of the site to provide events for session reply and analytics.
+The site is vanilla HTML5/CSS3, optimized for dektop and tablet. The feedback widget is a web component built with [Polymer 3.0](https://www.polymer-project.org/). There is a playground near the bottom of the site to provide events for session replay and analytics.
