@@ -69,7 +69,7 @@ module.exports.save = async (event) => {
     return response.genericError();
   }
 
-  return response.create(200, ghResponse || { message: '😊 only happy thoughts 😊' });
+  return response.create(200, { sentiment: sentimentInference.Sentiment });
 };
 
 module.exports.get = async (event) => {
