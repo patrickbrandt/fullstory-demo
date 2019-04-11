@@ -58,7 +58,7 @@ class SentimentFilter extends Component {
         <div className={`filter ${this.state.toggles.positive ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('positive')}><Emoji symbol='🙂' /><div>Positive</div></div>
         <div className={`filter ${this.state.toggles.neutral ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('neutral')}><Emoji symbol='😐' /><div>Neutral</div></div>
         <div className={`filter ${this.state.toggles.mixed ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('mixed')}><Emoji symbol='😕' /><div>Mixed</div></div>
-        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('negative')}><Emoji symbol='☹️' /><div>Negative</div></div>
+        <div className={`filter ${this.state.toggles.negative ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('negative')}><Emoji symbol='🙁' /><div>Negative</div></div>
         <div className={`filter ${this.state.toggles.rage ? 'select' : 'unselect' }`} onClick={e => this.handleFilterClick('rage')}><Emoji symbol='😡' /><div>Rage</div></div>
 
         <input ref={this.positiveCheck} type='checkbox' value='POSITIVE' onClick={this.handleCheck} />
