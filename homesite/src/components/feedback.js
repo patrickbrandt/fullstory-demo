@@ -49,7 +49,12 @@ export class Feedback extends PolymerElement {
         sessionURL,
       }),
     });
-    console.log(JSON.stringify(await response.json()));
+
+    const result = await response.json();
+
+    this.FS.event('Feedback', { sentiment: result.sentiment });
+
+    console.log(JSON.stringify(result));
     this.$.feedback.value = '';
   }
 
@@ -100,6 +105,10 @@ export class Feedback extends PolymerElement {
           font-family: serif;
           font-size: 1.15rem;
         }
+        #feedback {
+          font-size: 1rem;
+          padding: 10px;          
+        }
         button {
           display: block;
           border: none;
@@ -134,7 +143,7 @@ export class Feedback extends PolymerElement {
       <div id="container">
         <div id="handle" on-click="handleFeedbackClick">feedback</div>
         <p>Please let us know how we're doing!</p>
-        <textarea rows="10" cols="50" id="feedback"></textarea>
+        <textarea rows="10" cols="36" id="feedback"></textarea>
         <button id="send" on-click="handleSendClick">send</button>
       </div>
     `;
