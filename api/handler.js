@@ -69,7 +69,12 @@ module.exports.save = async (event) => {
     return response.genericError();
   }
 
-  return response.create(200, { sentiment: sentimentInference.Sentiment });
+  let respBody = { sentiment: sentimentInference.Sentiment };
+  if (!!ghResponse) {
+    respBody.issueLink = ghResponse.html_url;
+  }
+
+  return response.create(200, respBody);
 };
 
 module.exports.get = async (event) => {
