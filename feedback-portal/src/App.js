@@ -18,14 +18,13 @@ class App extends Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
-  async handleFilterChange(e) {
-    const value = e.target.value;
-    if (e.target.checked) {
-      this.filters.push(value);
-    } else {
-      const removeAt = this.filters.findIndex(element => element === value);
+  async handleFilterChange(value) {
+    const removeAt = this.filters.findIndex(element => element === value);
+    if (removeAt > -1) {
       this.filters.splice(removeAt, 1);
-    }
+    } else {
+      this.filters.push(value);
+    }    
 
     const query = `?sentiment=${this.filters.join(',')}`;
     const feedback = await this.getFeedback(query);

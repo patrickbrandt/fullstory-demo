@@ -23,9 +23,8 @@ footer {
   margin-top: 1.5em;
 }
 
-.sentimentFilters input {
-  visibility: hidden;
-  display: flex;
+.sentimentFilters {
+  margin-bottom: 3rem;
 }
 
 .sentimentFilters .filter {
