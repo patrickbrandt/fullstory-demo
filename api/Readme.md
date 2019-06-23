@@ -83,7 +83,7 @@ All responses include the sentiment category inferred from the feedback text:
 }
 ```
 
-If the feedback is categorized as negative, the response is inlcudes a URL to the GitHub issue.
+If the feedback is categorized as negative, the response includes a URL to the GitHub issue.
 ```
 {
     "sentiment": Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE'),
