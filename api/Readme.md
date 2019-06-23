@@ -76,14 +76,20 @@ mime-type: application/json
 ### Responses
 #### 200
 
-If the feedback is not categorized as negative, this is the response:
-```JSON
+All responses include the sentiment category inferred from the feedback text:
+```
 {
-    "message": "😊 only happy thoughts 😊"
+    "sentiment": Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE')
 }
 ```
 
-If the feedback is categorized as negative, the response is a pass-through from the GitHub [Create Issue API](https://developer.github.com/v3/issues/#create-an-issue).
+If the feedback is categorized as negative, the response is inlcudes a URL to the GitHub issue.
+```
+{
+    "sentiment": Enum('POSITIVE'|'NEUTRAL'|'MIXED'|'NEGATIVE'|'RAGE'),
+    "issueLink": String
+}
+```
 
 #### 500
 #### Response type
