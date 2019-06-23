@@ -5,11 +5,6 @@ class SentimentFilter extends Component {
   constructor(props) {
     super(props);
     this.handleFilterClick = this.handleFilterClick.bind(this);
-    this.positiveCheck = React.createRef();
-    this.neutralCheck = React.createRef();
-    this.mixedCheck = React.createRef();
-    this.negativeCheck = React.createRef();
-    this.rageCheck = React.createRef();
 
     this.state = {
       toggles: {
